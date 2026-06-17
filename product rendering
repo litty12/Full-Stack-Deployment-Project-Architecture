@@ -1,0 +1,31 @@
+import { getProducts } from "../api.js";
+
+export async function renderProducts() {
+
+  const products =
+    await getProducts();
+
+  const container =
+    document.getElementById("app");
+
+  container.innerHTML =
+    products.map(product => `
+      <article class="card">
+
+        <img
+          src="${product.image}"
+          alt="${product.title}"
+          loading="lazy">
+
+        <h2>${product.title}</h2>
+
+        <p>$${product.price}</p>
+
+        <button
+          data-id="${product.id}">
+          Add To Cart
+        </button>
+
+      </article>
+    `).join("");
+}
