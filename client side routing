@@ -1,0 +1,27 @@
+const routes = {
+  "/": renderHome,
+  "/products": renderProducts,
+  "/cart": renderCart
+};
+
+function navigate(path) {
+  history.pushState({}, "", path);
+  router();
+}
+
+function router() {
+  const path = window.location.pathname;
+  const page = routes[path] || render404;
+  page();
+}
+
+window.addEventListener("popstate", router);
+
+document.addEventListener("click", e => {
+  if (e.target.matches("[data-link]")) {
+    e.preventDefault();
+    navigate(e.target.href);
+  }
+});
+
+router();
