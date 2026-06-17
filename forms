@@ -1,0 +1,7 @@
+<label for="search">
+  Search Products
+</label>
+
+<input
+  id="search"
+  type="search">
